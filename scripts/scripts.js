@@ -2,7 +2,7 @@ var SCROLLER_LENGTH = 60;
 var HEIGHT = 7;
 var fps = 30;
 //Text
-var myMessage = textToLED("!LED para escrever aqui");
+var myMessage = textToLED("Example !HEART");
 var leftPointer = SCROLLER_LENGTH + 1;
 var rightPointer = 0;
 var furthestLeftPoint = 0 - myMessage.length;
@@ -405,6 +405,15 @@ function charToLED(theChar, special) {
                     [true, true, true, true, true, true, true],
                     [true, true, true, true, true, true, true]];
                     break;
+                case "HEART":
+                    theLed = [[false, true, true, true, false, false, false],
+                            [true, false, false, false, true, false, false],
+                            [true, false, false, false, false, true, false],
+                            [false, true, false, false, false, false, true],
+                            [true, false, false, false, false, true, false],
+                            [true, false, false, false, true, false, false],
+                            [false, true, true, true, false, false, false]];
+                        break;
                 case "SMILE":
                     theLed = [[false, false, false, false, false, true, false],
                     [false, true, false, false, false, false, true],
