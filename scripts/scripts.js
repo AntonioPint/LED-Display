@@ -7,7 +7,7 @@ var leftPointer = SCROLLER_LENGTH + 1;
 var rightPointer = 0;
 var furthestLeftPoint = 0 - myMessage.length;
 
-function changeText(text){
+function changeText(text) {
     clearLights();
     myMessage = textToLED(text);
     furthestLeftPoint = 0 - myMessage.length;
@@ -65,9 +65,8 @@ function textToLED(theWord) {
             theMessage.push(charToLED());
             theMessage.push(charToLED(theWord.charAt(i)));
         }
-        
     }
-    
+
     var flatten = [];
     flatten = flatten.concat.apply(flatten, theMessage);
 
@@ -336,8 +335,6 @@ function charToLED(theChar, special) {
         case '.':
             theLed = [[false, false, false, false, false, false, false],
             [false, false, false, false, false, false, true],
-            [false, false, false, false, false, false, false],
-            [false, false, false, false, false, false, false],
             [false, false, false, false, false, false, false]];
             break;
         case '$':
@@ -396,6 +393,11 @@ function charToLED(theChar, special) {
             [false, true, false, false, false, false, false],
             [true, false, true, false, false, false, false]];
             break;
+        case '|':
+            theLed = [[false, false, false, false, false, false, false],
+            [true, true, true, true, true, true, true],
+            [false, false, false, false, false, false, false]];
+            break;
         case '!':
             switch (special) {
                 case "FULL":
@@ -407,13 +409,13 @@ function charToLED(theChar, special) {
                     break;
                 case "HEART":
                     theLed = [[false, true, true, true, false, false, false],
-                            [true, false, false, false, true, false, false],
-                            [true, false, false, false, false, true, false],
-                            [false, true, false, false, false, false, true],
-                            [true, false, false, false, false, true, false],
-                            [true, false, false, false, true, false, false],
-                            [false, true, true, true, false, false, false]];
-                        break;
+                    [true, false, false, false, true, false, false],
+                    [true, false, false, false, false, true, false],
+                    [false, true, false, false, false, false, true],
+                    [true, false, false, false, false, true, false],
+                    [true, false, false, false, true, false, false],
+                    [false, true, true, true, false, false, false]];
+                    break;
                 case "SMILE":
                     theLed = [[false, false, false, false, false, true, false],
                     [false, true, false, false, false, false, true],
@@ -458,9 +460,9 @@ function charToLED(theChar, special) {
                                 theLed = theLed.concat(exclamation);
                             }
                             theLed = theLed.concat(textToLED(array[i]));
-                        }     
+                        }
                     }
-                break;
+                    break;
             }
             break;
         default:
@@ -474,7 +476,7 @@ function charToLED(theChar, special) {
 function draw() {
     setTimeout(function () {
         requestAnimationFrame(draw);
-        
+
         if (leftPointer == furthestLeftPoint) {
             leftPointer = SCROLLER_LENGTH + 1;
         }
@@ -522,7 +524,7 @@ let userCurrency,
 
 window.addEventListener('onEventReceived', function (obj) {
     if (!obj.detail.event) {
-      return;
+        return;
     }
     if (typeof obj.detail.event.itemId !== "undefined") {
         obj.detail.listener = "redemption-latest"
